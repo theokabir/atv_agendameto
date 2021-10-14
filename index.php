@@ -23,10 +23,10 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Cadastrar</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">Cadastrar</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="listar.html">Consultar</a>
+                    <a class="nav-link" href="listar.php">Consultar</a>
                   </li>
                 </ul>
               </div>

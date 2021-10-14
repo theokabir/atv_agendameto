@@ -1,3 +1,6 @@
+<?php
+require_once("backend/controllers/Ccadastro.php")
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +26,10 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Cadastrar</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">Cadastrar</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="listar.html">Consultar</a>
+                    <a class="nav-link" href="listar.php">Consultar</a>
                   </li>
                 </ul>
               </div>
@@ -50,28 +53,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Jorgeson</td>
-                        <td>(11)92894-9203</td>
-                        <td>Celular</td>
-                        <td>25/08/2021</td>
-                        <td>agendado para 30/08/2021</td>
-                        <td>
-                            <button class="btn btn-outline-success">Editar</button>
-                            <button class="btn btn-outline-danger">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jorgilson</td>
-                        <td>(11)99994-9203</td>
-                        <td>Celular</td>
-                        <td>25/08/2021</td>
-                        <td>agendado para 01/02/2022</td>
-                        <td>
-                            <button class="btn btn-outline-success">Editar</button>
-                            <button class="btn btn-outline-danger">Excluir</button>
-                        </td>
-                    </tr>
+                    <?php
+                        $controller = new ControllerCadastro();
+                        $resultado = $controller->listar(0);
+                        if (count($resultado) == 0) header("location: index.php");
+                        for($i = 0; $i < count($resultado); $i++){
+                    ?>  
+                        <tr>
+                            <td><?php echo $resultado[$i]['nome'] ?></td>
+                            <td><?php echo $resultado[$i]['telefone'] ?></td>
+                            <td><?php echo $resultado[$i]['origem'] ?></td>
+                            <td><?php echo $resultado[$i]['data_contato'] ?></td>
+                            <td><?php echo $resultado[$i]['observacao'] ?></td>
+                            <td>
+                                <button class="btn btn-outline-success" onclick="location.href='editar.php?id=<?php echo $resultado[$i]['id']; ?>'">Editar</button>
+                                <button class="btn btn-outline-danger"  onclick="location.href='excluir.php?id=<?php echo $resultado[$i]['id']; ?>'">Excluir</button>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
